@@ -571,6 +571,10 @@ export default (state: MainLayoutState, action: Action) => {
           })
           break
         }
+        case "create-circle": {
+          console.log('this is circle')
+          break
+        }
         case "create-polygon": {
           if (state.mode && state.mode.mode === "DRAW_POLYGON") break
           state = saveToHistory(state, "Create Polygon")

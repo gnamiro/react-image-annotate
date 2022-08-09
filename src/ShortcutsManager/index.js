@@ -94,6 +94,12 @@ export const useDispatchHotkeyHandlers = ({ dispatch }) => {
           selectedTool: "create-box",
         })
       },
+      create_circle_box: () => {
+        dispatch({
+          type: "SELECT_TOOL",
+          selectedTool: "create-circle",
+        })
+      },
       pan_tool: () => {
         dispatch({
           type: "SELECT_TOOL",

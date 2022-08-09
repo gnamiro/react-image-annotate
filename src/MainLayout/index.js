@@ -318,6 +318,12 @@ export const MainLayout = ({
                     getHotkeyHelpText("create_bounding_box"),
                 },
                 {
+                  name: "create-circle",
+                  helperText:
+                    "Add Circle Box" +
+                    getHotkeyHelpText("create_circle_box"),
+                },
+                {
                   name: "create-polygon",
                   helperText:
                     "Add Polygon" + getHotkeyHelpText("create_polygon"),

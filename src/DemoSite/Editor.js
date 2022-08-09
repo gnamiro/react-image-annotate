@@ -47,7 +47,7 @@ export const examples = {
     // regionClsList: ["hotdog"],
     regionTagList: ["has-bun"],
     regionClsList: ["hotdog", "not-hotdog"],
-    enabledTools: ["select", "create-box"],
+    enabledTools: ["select", "create-box", "create-circle"],
     // showTags: true,
     images: [
       {
@@ -92,7 +92,7 @@ const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
     <ThemeProvider theme={theme}>
       <div>
         <div className={c.editBar}>
-          <h3>React Image Annotate</h3>
+          <h3>React Image Annotate :)))</h3>
           <div style={{ flexGrow: 1 }} />
           <div>
             <div style={{ display: "inline-flex" }}>
@@ -180,7 +180,7 @@ const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
   imageTagList?: Array<string>,
   imageClsList?: Array<string>,
   // all tools are enabled by default
-  enabledTools?: Array< "select" | "create-point" | "create-box" | "create-polygon" | "create-line">,
+  enabledTools?: Array< "select" | "create-point" | "create-box" | "create-circle" | "create-polygon" | "create-line">,
   selectedImage?: string, // initial selected image
   images: Array<{
     src: string,

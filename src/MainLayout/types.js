@@ -18,6 +18,7 @@ export type ToolEnum =
   | "zoom"
   | "create-point"
   | "create-box"
+  | "create-circle"
   | "create-polygon"
   | "create-pixel"
   | "create-expanding-line"

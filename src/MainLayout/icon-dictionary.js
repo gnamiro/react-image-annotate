@@ -2,6 +2,11 @@
 
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
+
+import { BiShapeCircle } from "react-icons/bi";
 import {
   faArrowsAlt,
   faMousePointer,
@@ -17,11 +22,14 @@ import {
   faMask,
   faEdit,
   faChartLine,
+  faShareNodes,
 } from "@fortawesome/free-solid-svg-icons"
 import FullscreenIcon from "@mui/icons-material/Fullscreen"
 import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew"
 
 const faStyle = { marginTop: 4, width: 16, height: 16, marginBottom: 4 }
+
+library.add(fas, faTwitter, faFontAwesome)
 
 export const iconDictionary = {
   select: () => (
@@ -51,6 +59,17 @@ export const iconDictionary = {
       fixedWidth
       icon={faVectorSquare}
     />
+  ),
+  "create-circle": () => (
+    // <FontAwesomeIcon
+    //   style={faStyle}
+    //   size="xs"
+    //   fixedWidth
+    //   icon={faShareNodes}
+    //   />
+      <BiShapeCircle style={faStyle} />
+      
+      
   ),
   "create-polygon": () => (
     <FontAwesomeIcon

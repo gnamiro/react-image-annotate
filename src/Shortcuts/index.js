@@ -31,6 +31,13 @@ const defaultShortcuts = {
     name: "Add Bounding Box",
     key: "b",
   },
+  "create-circle": {
+    action: {
+      type: "SELECT_TOOL",
+    },
+    name: "Add Circle Box",
+    key: "c",
+  },
   pan: {
     action: {
       type: "SELECT_TOOL",

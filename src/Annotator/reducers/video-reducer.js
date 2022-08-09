@@ -69,6 +69,7 @@ export default (state: MainLayoutVideoAnnotationState, action: Action) => {
           case "create-point":
           case "create-polygon":
           case "create-box":
+          case "create-circle":
           case "create-keypoints":
             return copyImpliedRegions()
           default:
