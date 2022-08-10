@@ -171,7 +171,7 @@ export const MainLayout = ({
       onBeginRegionEdit={action("OPEN_REGION_EDITOR", "region")}
       onCloseRegionEdit={action("CLOSE_REGION_EDITOR", "region")}
       onDeleteRegion={action("DELETE_REGION", "region")}
-      onBeginBoxTransform={action("BEGIN_BOX_TRANSFORM", "box", "directions")}
+      onBeginBoxTransform={action("BEGIN_BOX_TRANSFORM", "box", "directions")} //TODO: add circle box transform
       onBeginMovePolygonPoint={action(
         "BEGIN_MOVE_POLYGON_POINT",
         "polygon",

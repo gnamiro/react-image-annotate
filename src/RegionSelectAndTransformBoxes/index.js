@@ -67,7 +67,7 @@ export const RegionSelectAndTransformBox = memo(
                 pbox={pbox}
               />
             )}
-            {r.type === "box" &&
+            {(r.type === "box" || r.type === "circle") && //TODO: iguess this part is where it draw some rectangle around shapes
               !dragWithPrimary &&
               !zoomWithPrimary &&
               !r.locked &&

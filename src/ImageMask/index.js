@@ -35,6 +35,17 @@ function convertToUDTRegions(regions) {
             height: r.h,
           }
         }
+        case "circle": {
+          // TODO: add circle option --> done!!
+          return {
+            regionType: "circle-box",
+            classification: r.cls,
+            centerX: r.x + r.w /2,
+            centerY: r.y + r.h /2,
+            width: r.w, 
+            height: r.h
+          }
+        }
         default: {
           return null
         }

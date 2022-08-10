@@ -363,6 +363,7 @@ export default (state: MainLayoutState, action: Action) => {
             }),
           })
         }
+
         case "DRAW_POLYGON": {
           const { regionId } = state.mode
           const [region, regionIndex] = getRegion(regionId)
@@ -572,6 +573,28 @@ export default (state: MainLayoutState, action: Action) => {
           break
         }
         case "create-circle": {
+          state = saveToHistory(state, "Create Circle")
+          newRegion = {
+            type: "circle",
+            x: x,
+            y: y,
+            w: 0,
+            h: 0,
+            highlighted: true,
+            editingLabels: false,
+            color: defaultRegionColor,
+            cls: defaultRegionCls,
+            id: getRandomId(),
+          }
+
+          state = setIn(state, ["mode"], {
+            mode: "RESIZE_BOX",
+            editLabelEditorAfter: true,
+            regionId: newRegion.id,
+            freedom: [1, 1],
+            original: {x, y, w: newRegion.w, h: newRegion.h},
+            isNew: true,
+          })
           console.log('this is circle')
           break
         }

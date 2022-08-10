@@ -42,6 +42,16 @@ export type Box = {|
   h: number,
 |}
 
+//TODO: circle here.
+export type Circle = {|
+  ...$Exact<BaseRegion>,
+  type: "circle",
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+|}
+
 export type Polygon = {|
   ...$Exact<BaseRegion>,
   type: "polygon",
@@ -94,6 +104,7 @@ export type Region =
   | Point
   | PixelRegion
   | Box
+  | Circle
   | Polygon
   | ExpandingLine
   | Keypoints
@@ -145,7 +156,8 @@ export const getEnclosingBox = (region: Region) => {
     case "line": {
       return { x: region.x1, y: region.y1, w: 0, h: 0 }
     }
-    case "box": {
+    case "box":
+    case "circle": {
       return { x: region.x, y: region.y, w: region.w, h: region.h }
     }
     case "point": {
@@ -163,7 +175,8 @@ export const moveRegion = (region: Region, x: number, y: number) => {
     case "point": {
       return { ...region, x, y }
     }
-    case "box": {
+    case "box":
+    case "circle": {
       return { ...region, x: x - region.w / 2, y: y - region.h / 2 }
     }
   }
