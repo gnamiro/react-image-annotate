@@ -22,6 +22,11 @@ export const defaultHotkeys = [
     binding: "b",
   },
   {
+    id: "create_circle_box",
+    description: "Create a circle box",
+    binding: "c",
+  },
+  {
     id: "pan_tool",
     description: "Select the Pan Tool",
     binding: "m",
@@ -161,7 +166,7 @@ export const useDispatchHotkeyHandlers = ({ dispatch }) => {
 export default ({ children, dispatch }) => {
   const handlers = useDispatchHotkeyHandlers({ dispatch })
   return (
-    <HotKeys allowChanges handlers={handlers}>
+    <HotKeys keyMap={defaultKeyMap} allowChanges handlers={handlers}>
       {children}
     </HotKeys>
   )

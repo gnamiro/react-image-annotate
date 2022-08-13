@@ -31,6 +31,7 @@ import useImpliedVideoRegions from "./use-implied-video-regions"
 import useKey from "use-key-hook"
 import { useSettings } from "../SettingsProvider"
 import { withHotKeys } from "react-hotkeys"
+import { defaultKeyMap } from "../ShortcutsManager"
 
 // import Fullscreen from "../Fullscreen"
 
@@ -230,6 +231,7 @@ export const MainLayout = ({
           }}
         >
           <HotkeyDiv
+            keyMap={defaultKeyMap}
             tabIndex={-1}
             divRef={innerContainerRef}
             onMouseDown={refocusOnMouseEvent}
