@@ -92,7 +92,7 @@ const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
     <ThemeProvider theme={theme}>
       <div>
         <div className={c.editBar}>
-          <h3>React Image Annotate :)))</h3>
+          <h3>NBIC Retinal Annotator</h3>
           <div style={{ flexGrow: 1 }} />
           <div>
             <div style={{ display: "inline-flex" }}>
@@ -170,7 +170,7 @@ const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
             />
           </div>
         </div>
-        <div className={c.specificationArea}>
+        {/* <div className={c.specificationArea}>
           <h2>React Image Annotate Format</h2>
           <Code language="javascript">{`
 {
@@ -212,7 +212,7 @@ const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
   }>,
 }
 `}</Code>
-        </div>
+        </div> */}
         <Dialog fullScreen open={outputDialogOpen}>
           <DialogTitle>React Image Annotate Output</DialogTitle>
           <DialogContent style={{ minWidth: 400 }}>
