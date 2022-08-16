@@ -9,6 +9,9 @@ export default () => {
   const [annotatorOpen, changeAnnotatorOpen] = useState(false)
   const [annotatorProps, changeAnnotatorProps] = useState(examples["Custom"]())
   const [lastOutput, changeLastOutput] = useState()
+  const [selectedImageIndex, changeSelectedImageIndex] = useState(0)
+  const imagesLength = annotatorProps.images.length;
+  const images = annotatorProps.images
 
   return (
     <div>
@@ -25,6 +28,13 @@ export default () => {
               changeLastOutput(output)
               changeAnnotatorOpen(false)
             }}
+            onNextImage={() => {
+              changeSelectedImageIndex((selectedImageIndex + 1) % imagesLength)
+            }}
+            onPrevImage={() => {
+              changeSelectedImageIndex((selectedImageIndex - 1 + imagesLength) % imagesLength)
+            }}
+            selectedImage={selectedImageIndex}
           />
         </ErrorBoundaryDialog>
       ) : (

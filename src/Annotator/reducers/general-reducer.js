@@ -595,7 +595,6 @@ export default (state: MainLayoutState, action: Action) => {
             original: {x, y, w: newRegion.w, h: newRegion.h},
             isNew: true,
           })
-          console.log('this is circle')
           break
         }
         case "create-polygon": {
@@ -873,6 +872,10 @@ export default (state: MainLayoutState, action: Action) => {
         }
         case "exit":
         case "done": {
+          return state
+        }
+        case "save": {
+          console.log('saved')
           return state
         }
         default:
