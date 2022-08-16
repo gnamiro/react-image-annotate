@@ -101,6 +101,7 @@ export const Annotator = ({
   hideSave,
   allowComments,
 }: Props) => {
+  
   if (typeof selectedImage === "string") {
     selectedImage = (images || []).findIndex((img) => img.src === selectedImage)
     if (selectedImage === -1) selectedImage = undefined
@@ -149,7 +150,7 @@ export const Annotator = ({
           }),
     })
   )
-
+  
   const dispatch = useEventCallback((action: Action) => {
     if (action.type === "HEADER_BUTTON_CLICKED") {
       if (["Exit", "Done", "Save", "Complete"].includes(action.buttonName)) {

@@ -92,7 +92,7 @@ const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
     <ThemeProvider theme={theme}>
       <div>
         <div className={c.editBar}>
-          <h3>NBIC Retinal Annotator</h3>
+          <h3>NBIC Retinal Lesion Annotator</h3>
           <div style={{ flexGrow: 1 }} />
           <div>
             <div style={{ display: "inline-flex" }}>

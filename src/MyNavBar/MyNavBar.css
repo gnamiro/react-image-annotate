@@ -1,0 +1,31 @@
+
+.navbar-dark .navbar-nav .nav-link.active, .navbar-dark.navbar-nav.show>.nav-link{
+    color: rgb(240, 75,77);
+    font-weight: bold;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(242, 242, 242);
+    font-weight: bold;
+}
+
+.nvbar_logo_img {
+    width: 3rem;
+}
+
+.my_nvbar {
+    color: rgb(242, 242, 242);
+    font-weight: bold;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-decoration: none;
+}
+
+.my_nvbar:hover {
+    color: rgb(196, 196, 196);
+  }
+
+.my_nvbar.active {
+    color: rgb(240, 75,77);
+    text-decoration: none;
+}

@@ -81,6 +81,7 @@ export const MainLayout = ({
   hideFullScreen = false,
   hideSave = false,
 }: Props) => {
+  
   const classes = useStyles()
   const settings = useSettings()
   const fullScreenHandle = useFullScreenHandle()
