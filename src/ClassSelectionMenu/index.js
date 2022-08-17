@@ -90,7 +90,7 @@ export const ClassSelectionMenu = ({
             <Circle
               style={{ backgroundColor: colors[index % colors.length] }}
             />
-            <Label className={classnames({ selected: label === selectedCls })}>
+            <Label className={classnames({ selected: label === selectedCls })} style={{ backgroundColor: colors[index % colors.length] }}>
               {capitalize(label)}
             </Label>
             <DashSep />

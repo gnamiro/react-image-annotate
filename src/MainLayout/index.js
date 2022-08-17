@@ -362,7 +362,10 @@ export const MainLayout = ({
                   <DebugBox state={debugModeOn} lastAction={state.lastAction} />
                 ),
                 state.taskDescription && (
-                  <TaskDescription description={state.taskDescription} />
+                  <TaskDescription 
+                    description={state.taskDescription} 
+                    comment={state.comment}
+                  />
                 ),
                 state.regionClsList && (
                   <ClassSelectionMenu

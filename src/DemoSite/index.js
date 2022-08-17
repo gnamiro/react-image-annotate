@@ -41,8 +41,8 @@ export default () => {
   const [annotatorProps, changeAnnotatorProps] = useState(examples["Custom"]())
   const [lastOutput, changeLastOutput] = useState()
   const [selectedImageIndex, changeSelectedImageIndex] = useState(0)
-  const imagesLength = annotatorProps.images.length;
-  const images = annotatorProps.images
+  // const imagesLength = annotatorProps.images.length;
+  // const images = annotatorProps.images
 
   return (
     <div>
@@ -75,10 +75,10 @@ export default () => {
               // }
             }}
             onNextImage={() => {
-              changeSelectedImageIndex((selectedImageIndex + 1) % imagesLength)
+              changeSelectedImageIndex((selectedImageIndex + 1) % annotatorProps.images.length)
             }}
             onPrevImage={() => {
-              changeSelectedImageIndex((selectedImageIndex - 1 + imagesLength) % imagesLength)
+              changeSelectedImageIndex((selectedImageIndex - 1 + annotatorProps.images.length) % annotatorProps.images.length)
             }}
             selectedImage={selectedImageIndex}
           />
