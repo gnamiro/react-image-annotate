@@ -364,7 +364,8 @@ export const MainLayout = ({
                 state.taskDescription && (
                   <TaskDescription 
                     description={state.taskDescription} 
-                    comment={state.comment}
+                    comment={activeImage.comment}
+                    onChange={action("CHANGE_IMAGE_COMMENT", "comment")}
                   />
                 ),
                 state.regionClsList && (

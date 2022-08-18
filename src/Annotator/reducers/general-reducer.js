@@ -150,6 +150,17 @@ export default (state: MainLayoutState, action: Action) => {
         action.region
       )
     }
+    case "CHANGE_IMAGE_COMMENT": {
+      if(!activeImage) return state
+      const oldComment = activeImage.comment
+      // console.log(action)
+      if(!isEqual(oldComment, action.comment)){
+        state = saveToHistory(state, "Change Image comment")
+      }
+      console.log(state)
+      state = setIn(state, ["comment"], action.comment)
+      return setIn(state, [...pathToActiveImage, "comment"], state.comment)
+    }
     case "CHANGE_IMAGE": {
       if (!activeImage) return state
       const { delta } = action

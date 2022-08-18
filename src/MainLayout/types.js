@@ -155,3 +155,4 @@ export type Action =
   | {| type: "SELECT_TOOL", selectedTool: ToolEnum |}
   | {| type: "CANCEL" |}
   | {| type: "SELECT_CLASSIFICATION", cls: string |}
+  | {| type: "CHANGE_IMAGE_COMMENT", comment: string |}
