@@ -14,6 +14,7 @@ import getLandmarksWithTransform from "../../utils/get-landmarks-with-transform"
 import setInLocalStorage from "../../utils/set-in-local-storage"
 
 const getRandomId = () => Math.random().toString().split(".")[1]
+const arrayRemove = (arr, value) => { return arr.filter((ele)=>{return ele !== value})}
 
 export default (state: MainLayoutState, action: Action) => {
   if (
@@ -124,6 +125,9 @@ export default (state: MainLayoutState, action: Action) => {
       return setNewImage(action.image, action.imageIndex)
     }
     case "SELECT_CLASSIFICATION": {
+      let selectedClsList = activeImage.selectedClsList || []
+      selectedClsList = selectedClsList.indexOf(action.cls) !== -1 ? arrayRemove(selectedClsList, action.cls) : selectedClsList.concat([action.cls])
+      state = setIn(state, [...pathToActiveImage, 'selectedClsList'], selectedClsList)
       return setIn(state, ["selectedCls"], action.cls)
     }
     case "CHANGE_REGION": {

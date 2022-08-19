@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { styled } from "@mui/material/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import Box from "@mui/material/Box"
@@ -36,6 +36,7 @@ const Circle = styled("div")(({ theme }) => ({
 }))
 const Label = styled("div")(({ theme }) => ({
   fontSize: 11,
+  marginLeft: 2
 }))
 const DashSep = styled("div")(({ theme }) => ({
   flexGrow: 1,
@@ -56,13 +57,18 @@ const Number = styled("div")(({ theme }) => ({
 export const ClassSelectionMenu = ({
   selectedCls,
   regionClsList,
+  activeClsList,
   onSelectCls,
 }) => {
+
+  // const [regionsStatus, setRegionsStatus] = useState(regionStatus)
+
   useEffect(() => {
     const keyMapping = {}
     for (let i = 0; i < 9 && i < regionClsList.length; i++) {
-      keyMapping[i + 1] = () => onSelectCls(regionClsList[i])
+      keyMapping[i + 1] = () => handleClickLabel(regionClsList[i])
     }
+
     const onKeyDown = (e) => {
       if (keyMapping[e.key]) {
         keyMapping[e.key]()
@@ -74,6 +80,26 @@ export const ClassSelectionMenu = ({
     return () => window.removeEventListener("keydown", onKeyDown)
   }, [regionClsList, selectedCls])
 
+  const handleClickLabel = (label) => {
+    //https://dev.to/shareef/how-to-work-with-arrays-in-reactjs-usestate-4cmi
+    //https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd
+    //https://blog.logrocket.com/building-custom-checkbox-react/
+
+    // const labelIndex = getLabelIndex(label)
+    // setRegionsStatus(
+    //   regionsStatus.map((region) => region.label === label ? {...region, status: !region.status}:{...region})
+    // )
+    onSelectCls(label)
+  }
+  // const getLabelIndex = (label) => {
+  //   for(let i = 0; i < regionStatus.length; i++){
+  //     console.log(regionStatus[i])
+  //     if(regionStatus[i].label === label)
+  //       return i
+  //   }
+    
+  //   return null;
+  // }
   return (
     <ThemeProvider theme={theme}>
       <SidebarBoxContainer
@@ -85,11 +111,12 @@ export const ClassSelectionMenu = ({
         {regionClsList.map((label, index) => (
           <LabelContainer
             className={classnames({ selected: label === selectedCls })}
-            onClick={() => onSelectCls(label)}
+            onClick={() => {handleClickLabel(label)}}
           >
-            <Circle
+            {/* <Circle // TODO: add checkbox right here
               style={{ backgroundColor: colors[index % colors.length] }}
-            />
+            /> */}
+            <input type="checkbox" checked={activeClsList.indexOf(label) !== -1}/>
             <Label className={classnames({ selected: label === selectedCls })} style={{ backgroundColor: colors[index % colors.length] }}>
               {capitalize(label)}
             </Label>

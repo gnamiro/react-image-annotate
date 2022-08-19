@@ -49,7 +49,7 @@ export const TaskDescriptionSidebarBox = ({ description, comment, onChange }) =>
           ref={commentInputRef}
           onClick={onCommentInputClick}
           value={comment || ""}
-          onChange={(event) => onChange(event.target.value)} //TODO Create some Close_comment_editor for creating comment part to each images
+          onChange={(event) => onChange(event.target.value)}
         />
         </MarkdownContainer>
       </SidebarBoxContainer>
