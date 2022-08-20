@@ -7,7 +7,6 @@ import ErrorBoundaryDialog from "./ErrorBoundaryDialog.js"
 import axios from 'axios'
 
 const splitRegionData = (region) => {
-  console.log(region)
   let regionData = {}
   regionData['cls'] = region.cls
   regionData['comment'] = region.comment

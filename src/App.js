@@ -47,7 +47,7 @@ import React, { Component }  from 'react';
 // }
 
 function App(){
-  console.log('hh')
+  // console.log('hh')
   return (
     <Router>
         <Switch>

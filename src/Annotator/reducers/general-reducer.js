@@ -158,10 +158,10 @@ export default (state: MainLayoutState, action: Action) => {
       if(!activeImage) return state
       const oldComment = activeImage.comment
       // console.log(action)
-      if(!isEqual(oldComment, action.comment)){
-        state = saveToHistory(state, "Change Image comment")
-      }
-      console.log(state)
+      // if(!isEqual(oldComment, action.comment)){
+      //   state = saveToHistory(state, "Change Image comment")
+      // }
+      // console.log(state)
       state = setIn(state, ["comment"], action.comment)
       return setIn(state, [...pathToActiveImage, "comment"], state.comment)
     }
@@ -890,7 +890,7 @@ export default (state: MainLayoutState, action: Action) => {
           return state
         }
         case "save": {
-          console.log('saved')
+          // console.log('saved')
           return state
         }
         default:

@@ -42,7 +42,12 @@ export const TaskDescriptionSidebarBox = ({ description, comment, onChange }) =>
         expandedByDefault={description && description !== "" ? false : true}
       >
       <MarkdownContainer>
-        <TextField      
+        <TextField 
+          id="outlined-basic"
+          label="comments"   
+          margin="normal"
+          variant="outlined"  
+          color="secondary"
           fullWidth
           multiline
           rows={6}
