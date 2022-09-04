@@ -12,8 +12,19 @@ import convertExpandingLineToPolygon from "./convert-expanding-line-to-polygon"
 import clamp from "clamp"
 import getLandmarksWithTransform from "../../utils/get-landmarks-with-transform"
 import setInLocalStorage from "../../utils/set-in-local-storage"
+import {v4 as uuidv4} from 'uuid'
 
-const getRandomId = () => Math.random().toString().split(".")[1]
+// const getRandomId = () => {
+//   let dt = new Date().getTime();
+//   let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+//     let r = (dt + Math.random()*16)%16 | 0;
+//     dt = Math.floor(dt/16);
+//     return (c === 'x' ? r : (r&0x3|0x8)).toString(16)
+//   });
+
+//   return uuid;
+// }
+const getRandomId = () => uuidv4();
 const arrayRemove = (arr, value) => { return arr.filter((ele)=>{return ele !== value})}
 
 export default (state: MainLayoutState, action: Action) => {

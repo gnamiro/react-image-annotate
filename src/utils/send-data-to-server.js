@@ -13,6 +13,7 @@ export const splitRegionData = (region) => {
     regionData['cls'] = region.cls
     regionData['comment'] = region.comment
     regionData['tags'] = region.tags
+    regionData['id'] = region.id
     if(region.type === "polygon"){
       regionData['type'] = "polygon"
       regionData['points'] = region.points
