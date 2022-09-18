@@ -77,6 +77,8 @@ export const examples = {
 }
 
 const Editor = ({ onOpenAnnotator, lastOutput }: any) => {
+
+  console.log("***** Editor ******");
   const c = useStyles()
   const [currentError, changeCurrentError] = useState()
   const [selectedExample, changeSelectedExample] = useState(

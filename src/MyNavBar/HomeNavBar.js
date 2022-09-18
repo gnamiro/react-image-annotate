@@ -6,13 +6,13 @@ import React, { Component }  from 'react';
 
 import {Link} from "react-scroll";
 
-import "./MyNavBar.css" 
+import "./HomeNavBar.css" 
 
-function MyNavBar() {
+function HomeNavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed='top'>
       <Container fluid>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img src="./images/nbic_logo.png" className="nvbar_logo_img" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -46,4 +46,4 @@ function MyNavBar() {
   );
 }
 
-export default MyNavBar;
+export default HomeNavBar;

@@ -6,7 +6,7 @@ import HomePage from "../Home/HomePage.js"
 import HowItWorks from "../HowItWorks/HowItWorks.js";
 import AboutUs from "../AboutUs/AboutUs.js"
 import Contact from '../Contact/Contact.js';
-import MyNavBar from "../MyNavBar/MyNavBar.js"
+import HomeNavBar from "../MyNavBar/HomeNavBar.js"
 
 import React, { Component }  from 'react';
 
@@ -14,7 +14,7 @@ function Main() {
   return (
     <div>
       <section id="MyNavBar">
-        <MyNavBar />
+        <HomeNavBar />
       </section>
 
       <section id="HomePage">

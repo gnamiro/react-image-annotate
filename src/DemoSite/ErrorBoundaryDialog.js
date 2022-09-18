@@ -16,6 +16,8 @@ export default class ErrorBoundaryDialog extends Component {
     })
   }
   render() {
+
+    console.log("***** ErrorBoundaryDialog ******");
     if (this.state.hasError) {
       return (
         <Dialog open={this.state.hasError} onClose={this.props.onClose}>
