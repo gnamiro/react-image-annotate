@@ -89,13 +89,12 @@ class RetinaAnnotator extends React.Component{
             <div>
                 {this.state.annotatorOpen ?(
                     <ErrorBoundaryDialog>
-                      <Container fluid>
+                      {/* <Container fluid>
                         <Row>
                           <Col md={{span:2}}>
                           
                           </Col>
-                          <Col md={{span:10}}>
-
+                          <Col md={{span:10}}> */}
                             <Annotator
                             onExit={(output) => {
                                 console.log(output.images)
@@ -107,9 +106,9 @@ class RetinaAnnotator extends React.Component{
                             allowComments={true}
                             selectedImage={0}
                             />
-                          </Col>
+                          {/* </Col>
                         </Row>
-                        </Container>
+                        </Container> */}
                     </ErrorBoundaryDialog>
                 ):(
                     <AnnotatorSetting OpenAnnotatorClicked={this.OpenAnnotatorClicked}/>
