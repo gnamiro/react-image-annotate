@@ -142,7 +142,7 @@ export const RegionLabel = ({
                   onChange={(newTags) =>
                     onChange({
                       ...(region: any),
-                      tags: newTags.map((t) => t.value),
+                      tags: (newTags|| []).map((t) => t.value),
                     })
                   }
                   placeholder="Tags"

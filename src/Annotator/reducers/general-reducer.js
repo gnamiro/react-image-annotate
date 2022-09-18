@@ -12,8 +12,20 @@ import convertExpandingLineToPolygon from "./convert-expanding-line-to-polygon"
 import clamp from "clamp"
 import getLandmarksWithTransform from "../../utils/get-landmarks-with-transform"
 import setInLocalStorage from "../../utils/set-in-local-storage"
+import {v4 as uuidv4} from 'uuid'
 
-const getRandomId = () => Math.random().toString().split(".")[1]
+// const getRandomId = () => {
+//   let dt = new Date().getTime();
+//   let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+//     let r = (dt + Math.random()*16)%16 | 0;
+//     dt = Math.floor(dt/16);
+//     return (c === 'x' ? r : (r&0x3|0x8)).toString(16)
+//   });
+
+//   return uuid;
+// }
+const getRandomId = () => uuidv4();
+const arrayRemove = (arr, value) => { return arr.filter((ele)=>{return ele !== value})}
 
 export default (state: MainLayoutState, action: Action) => {
   if (
@@ -124,6 +136,9 @@ export default (state: MainLayoutState, action: Action) => {
       return setNewImage(action.image, action.imageIndex)
     }
     case "SELECT_CLASSIFICATION": {
+      let selectedClsList = activeImage.selectedClsList || []
+      selectedClsList = selectedClsList.indexOf(action.cls) !== -1 ? arrayRemove(selectedClsList, action.cls) : selectedClsList.concat([action.cls])
+      state = setIn(state, [...pathToActiveImage, 'selectedClsList'], selectedClsList)
       return setIn(state, ["selectedCls"], action.cls)
     }
     case "CHANGE_REGION": {
@@ -149,6 +164,17 @@ export default (state: MainLayoutState, action: Action) => {
         [...pathToActiveImage, "regions", regionIndex],
         action.region
       )
+    }
+    case "CHANGE_IMAGE_COMMENT": {
+      if(!activeImage) return state
+      const oldComment = activeImage.comment
+      // console.log(action)
+      // if(!isEqual(oldComment, action.comment)){
+      //   state = saveToHistory(state, "Change Image comment")
+      // }
+      // console.log(state)
+      state = setIn(state, ["comment"], action.comment)
+      return setIn(state, [...pathToActiveImage, "comment"], state.comment)
     }
     case "CHANGE_IMAGE": {
       if (!activeImage) return state
@@ -875,7 +901,7 @@ export default (state: MainLayoutState, action: Action) => {
           return state
         }
         case "save": {
-          console.log('saved')
+          // console.log('saved')
           return state
         }
         default:

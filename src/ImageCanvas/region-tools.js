@@ -42,7 +42,6 @@ export type Box = {|
   h: number,
 |}
 
-//TODO: circle here.
 export type Circle = {|
   ...$Exact<BaseRegion>,
   type: "circle",

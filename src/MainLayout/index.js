@@ -173,7 +173,7 @@ export const MainLayout = ({
       onBeginRegionEdit={action("OPEN_REGION_EDITOR", "region")}
       onCloseRegionEdit={action("CLOSE_REGION_EDITOR", "region")}
       onDeleteRegion={action("DELETE_REGION", "region")}
-      onBeginBoxTransform={action("BEGIN_BOX_TRANSFORM", "box", "directions")} //TODO: add circle box transform
+      onBeginBoxTransform={action("BEGIN_BOX_TRANSFORM", "box", "directions")}
       onBeginMovePolygonPoint={action(
         "BEGIN_MOVE_POLYGON_POINT",
         "polygon",
@@ -362,12 +362,17 @@ export const MainLayout = ({
                   <DebugBox state={debugModeOn} lastAction={state.lastAction} />
                 ),
                 state.taskDescription && (
-                  <TaskDescription description={state.taskDescription} />
+                  <TaskDescription 
+                    description={state.taskDescription} 
+                    comment={activeImage.comment}
+                    onChange={action("CHANGE_IMAGE_COMMENT", "comment")}
+                  />
                 ),
                 state.regionClsList && (
                   <ClassSelectionMenu
                     selectedCls={state.selectedCls}
                     regionClsList={state.regionClsList}
+                    activeClsList={activeImage.selectedClsList || []}
                     onSelectCls={action("SELECT_CLASSIFICATION", "cls")}
                   />
                 ),
