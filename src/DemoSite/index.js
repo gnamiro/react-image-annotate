@@ -5,19 +5,19 @@ import Editor, { examples } from "./Editor"
 import Annotator from "../Annotator"
 import ErrorBoundaryDialog from "./ErrorBoundaryDialog.js"
 
-import {saveData, splitRegionData} from '../utils/send-data-to-server'
+import {saveData, splitRegionData, getImageData} from '../utils/send-data-to-server'
 
 const preprocessDataBeforeSend = (output) => {
   console.log(output.images)
   let _images = output.images
   for (let imageIndex = 0; imageIndex < _images.length; imageIndex++){
-    let imageData = {}
-    imageData['src'] = _images[imageIndex].src
-    imageData['name'] = _images[imageIndex].name
-    imageData['cls'] = _images[imageIndex].selectedClsList || []
-    imageData['comment'] = _images[imageIndex].comment || ""
-    if (_images[imageIndex].pixelSize !== undefined)
-      imageData['pixelSize'] = {'h': _images[imageIndex].pixelSize.h, 'w': _images[imageIndex].pixelSize.w}
+    let imageData = getImageData(_images[imageIndex])
+    // imageData['src'] = _images[imageIndex].src
+    // imageData['name'] = _images[imageIndex].name
+    // imageData['cls'] = _images[imageIndex].selectedClsList || []
+    // imageData['comment'] = _images[imageIndex].comment || ""
+    // if (_images[imageIndex].pixelSize !== undefined)
+    //   imageData['pixelSize'] = {'h': _images[imageIndex].pixelSize.h, 'w': _images[imageIndex].pixelSize.w}
     
     let _regions = _images[imageIndex].regions || []
     imageData['regions'] = [] 

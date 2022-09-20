@@ -18,86 +18,59 @@ class RetinaAnnotator extends React.Component{
         super(props);
         this.labels = ["DR","AMD"];
         this.multi_label = false;
-        this.images = [
-            {
-              "src": "./images/2_06032012101_2.jpg",
-              "name": "2_06032012101_2.jpg"
-            },
-            {
-              "src": "./images/2_06032012106_2.jpg",
-              "name": "2_06032012106_2.jpg"
-            },
-            {
-              "src": "./images/2_06032012201_2.jpg",
-              "name": "2_06032012201_2.jpg"
-            },
-            {
-              "src": "./images/2_06032012202_2.jpg",
-              "name": "2_06032012202_2.jpg"
-            },
-            {
-              "src": "./images/2_06032017901_1.jpg",
-              "name": "2_06032017901_1.jpg"
-            }
-          ];
+        // this.images = [
+        //     {
+        //       "src": "./images/2_06032012101_2.jpg",
+        //       "name": "2_06032012101_2.jpg"
+        //     }
+        //   ];
+          this.images = [];
           this.state = {annotatorOpen: false};
           this.OpenAnnotatorClicked = this.OpenAnnotatorClicked.bind(this);
     }
     
-    OpenAnnotatorClicked(labels, multi_label) {
+    OpenAnnotatorClicked(labels, multi_label, imagesPromise) {
 
         this.multi_label = multi_label;
         this.labels = labels;
+        console.log(imagesPromise) //TODO: add imagesName to this
         // this.images = something from backennd
-        this.setState({
-          annotatorOpen: true
-        });
+        imagesPromise.then(response => {
+          console.log(response)
+          response.imagesName.forEach(element => {
+            console.log(element)
+              const image = {
+                'src':  "./images/images/" + element,
+                'name': element
+              }
+              this.images.push(image)
+          });
+
+          console.log(this.images)
+          this.setState({
+            annotatorOpen: true
+          });
+        })
     }
 
     render(){
 
       console.log(this)
 
-        
-
-        // return(
-        //     <Router>
-        //         <Switch>
-        //             <Route exact path="/annotator/setting">
-        //                 <AnnotatorSetting />
-        //             </Route>
-        //             <Route path="/annotator/draw">
-        //                 <ErrorBoundaryDialog>
-        //                     <Annotator
-        //                     onExit={(output) => {
-        //                         console.log(output.images)
-        //                     }}
-        //                     taskDescription="Classify Retina Images."
-        //                     enabledTools={["select"]}
-        //                     regionClsList={this.labels}
-        //                     images={this.images}
-        //                     allowComments={true}
-        //                     selectedImage={0}
-        //                     />
-        //                 </ErrorBoundaryDialog>
-        //             </Route>
-        //         </Switch>
-        //     </Router>
-        // );
 
         return(
             <div>
                 {this.state.annotatorOpen ?(
                     <ErrorBoundaryDialog>
-                      {/* <Container fluid>
+                      <Container fluid>
                         <Row>
                           <Col md={{span:2}}>
                           
                           </Col>
-                          <Col md={{span:10}}> */}
+                          <Col md={{span:10}}>
                             <Annotator
                             onExit={(output) => {
-                                console.log(output.images)
+                                console.log(output)
                             }}
                             taskDescription="Classify Retina Images."
                             enabledTools={["select"]}
@@ -106,9 +79,9 @@ class RetinaAnnotator extends React.Component{
                             allowComments={true}
                             selectedImage={0}
                             />
-                          {/* </Col>
+                          </Col>
                         </Row>
-                        </Container> */}
+                        </Container>
                     </ErrorBoundaryDialog>
                 ):(
                     <AnnotatorSetting OpenAnnotatorClicked={this.OpenAnnotatorClicked}/>

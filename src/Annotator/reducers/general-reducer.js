@@ -14,6 +14,8 @@ import getLandmarksWithTransform from "../../utils/get-landmarks-with-transform"
 import setInLocalStorage from "../../utils/set-in-local-storage"
 import {v4 as uuidv4} from 'uuid'
 
+import { saveActiveImage } from "../../utils/send-data-to-server"
+
 // const getRandomId = () => {
 //   let dt = new Date().getTime();
 //   let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -871,6 +873,7 @@ export default (state: MainLayoutState, action: Action) => {
         case "clone": {
           if (currentImageIndex === null) return state
           if (currentImageIndex === state.images.length - 1) return state
+          
           return setIn(
             setNewImage(
               state.images[currentImageIndex + 1],
