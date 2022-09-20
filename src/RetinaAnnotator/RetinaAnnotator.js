@@ -40,7 +40,7 @@ class RetinaAnnotator extends React.Component{
               "name": "2_06032017901_1.jpg"
             }
           ];
-          this.state = {annotatorOpen: false};
+          this.state = {annotatorOpen: false, selectedImage: 0};
           this.OpenAnnotatorClicked = this.OpenAnnotatorClicked.bind(this);
     }
     
@@ -55,8 +55,6 @@ class RetinaAnnotator extends React.Component{
     }
 
     render(){
-
-      console.log(this)
 
         
 
@@ -88,28 +86,25 @@ class RetinaAnnotator extends React.Component{
         return(
             <div>
                 {this.state.annotatorOpen ?(
-                    <ErrorBoundaryDialog>
-                      {/* <Container fluid>
-                        <Row>
-                          <Col md={{span:2}}>
-                          
-                          </Col>
-                          <Col md={{span:10}}> */}
-                            <Annotator
-                            onExit={(output) => {
-                                console.log(output.images)
-                            }}
-                            taskDescription="Classify Retina Images."
-                            enabledTools={["select"]}
-                            regionClsList={this.labels}
-                            images={this.images}
-                            allowComments={true}
-                            selectedImage={0}
-                            />
-                          {/* </Col>
-                        </Row>
-                        </Container> */}
-                    </ErrorBoundaryDialog>
+                  <ErrorBoundaryDialog>
+                        <Annotator
+                          onExit={(output) => {
+                              console.log(output.images)
+                          }}
+                          taskDescription="Classify Retina Images."
+                          enabledTools={["select"]}
+                          regionClsList={this.labels}
+                          images={this.images}
+                          allowComments={true}
+                          selectedImage={this.state.selectedImage}
+                          onNextImage={ () => {
+                            this.setState({selectedImage: (this.state.selectedImage + 1) % this.images.length})
+                          }}
+                          onPrevImage={ () => {
+                            this.setState({selectedImage: (this.state.selectedImage - 1 + this.images.length) % this.images.length})
+                          }}
+                          />
+                  </ErrorBoundaryDialog>
                 ):(
                     <AnnotatorSetting OpenAnnotatorClicked={this.OpenAnnotatorClicked}/>
                 )
