@@ -55,34 +55,55 @@ class RetinaAnnotator extends React.Component{
 
     render(){
 
-      console.log(this)
+        
 
+        // return(
+        //     <Router>
+        //         <Switch>
+        //             <Route exact path="/annotator/setting">
+        //                 <AnnotatorSetting />
+        //             </Route>
+        //             <Route path="/annotator/draw">
+        //                 <ErrorBoundaryDialog>
+        //                     <Annotator
+        //                     onExit={(output) => {
+        //                         console.log(output.images)
+        //                     }}
+        //                     taskDescription="Classify Retina Images."
+        //                     enabledTools={["select"]}
+        //                     regionClsList={this.labels}
+        //                     images={this.images}
+        //                     allowComments={true}
+        //                     selectedImage={0}
+        //                     />
+        //                 </ErrorBoundaryDialog>
+        //             </Route>
+        //         </Switch>
+        //     </Router>
+        // );
 
         return(
             <div>
                 {this.state.annotatorOpen ?(
-                    <ErrorBoundaryDialog>
-                      <Container fluid>
-                        <Row>
-                          <Col md={{span:2}}>
-                          
-                          </Col>
-                          <Col md={{span:10}}>
-                            <Annotator
-                            onExit={(output) => {
-                                console.log(output)
-                            }}
-                            taskDescription="Classify Retina Images."
-                            enabledTools={["select"]}
-                            regionClsList={this.labels}
-                            images={this.images}
-                            allowComments={true}
-                            selectedImage={0}
-                            />
-                          </Col>
-                        </Row>
-                        </Container>
-                    </ErrorBoundaryDialog>
+                  <ErrorBoundaryDialog>
+                        <Annotator
+                          onExit={(output) => {
+                              console.log(output.images)
+                          }}
+                          taskDescription="Classify Retina Images."
+                          enabledTools={["select"]}
+                          regionClsList={this.labels}
+                          images={this.images}
+                          allowComments={true}
+                          selectedImage={this.state.selectedImage}
+                          onNextImage={ () => {
+                            this.setState({selectedImage: (this.state.selectedImage + 1) % this.images.length})
+                          }}
+                          onPrevImage={ () => {
+                            this.setState({selectedImage: (this.state.selectedImage - 1 + this.images.length) % this.images.length})
+                          }}
+                          />
+                  </ErrorBoundaryDialog>
                 ):(
                     <AnnotatorSetting OpenAnnotatorClicked={this.OpenAnnotatorClicked}/>
                 )
