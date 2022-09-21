@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {
     BrowserRouter as Router,
     Switch,
@@ -18,14 +18,23 @@ class RetinaAnnotator extends React.Component{
         super(props);
         this.labels = ["DR","AMD"];
         this.multi_label = false;
+        // this.images = useS
+        this.images = [];
         // this.images = [
         //     {
         //       "src": "./images/2_06032012101_2.jpg",
         //       "name": "2_06032012101_2.jpg"
+        //     },
+        //     {
+        //       "src": "./images/2_06032012101_2.jpg",
+        //       "name": "2_060320.jpg"
+        //     },
+        //     {
+        //       "src": "./images/2_06032012101_2.jpg",
+        //       "name": "2adf.jpg"
         //     }
         //   ];
-          this.images = [];
-          this.state = {annotatorOpen: false};
+          this.state = {annotatorOpen: false, selectedImage: 0};
           this.OpenAnnotatorClicked = this.OpenAnnotatorClicked.bind(this);
     }
     
@@ -33,54 +42,26 @@ class RetinaAnnotator extends React.Component{
 
         this.multi_label = multi_label;
         this.labels = labels;
-        console.log(imagesPromise) //TODO: add imagesName to this
+        // console.log(imagesPromise) //TODO: add imagesName to this
         // this.images = something from backennd
         imagesPromise.then(response => {
-          console.log(response)
           response.imagesName.forEach(element => {
-            console.log(element)
-              const image = {
+              let image = {
                 'src':  "./images/images/" + element,
                 'name': element
               }
               this.images.push(image)
+              
           });
 
-          console.log(this.images)
           this.setState({
             annotatorOpen: true
           });
         })
+        
     }
 
     render(){
-
-        
-
-        // return(
-        //     <Router>
-        //         <Switch>
-        //             <Route exact path="/annotator/setting">
-        //                 <AnnotatorSetting />
-        //             </Route>
-        //             <Route path="/annotator/draw">
-        //                 <ErrorBoundaryDialog>
-        //                     <Annotator
-        //                     onExit={(output) => {
-        //                         console.log(output.images)
-        //                     }}
-        //                     taskDescription="Classify Retina Images."
-        //                     enabledTools={["select"]}
-        //                     regionClsList={this.labels}
-        //                     images={this.images}
-        //                     allowComments={true}
-        //                     selectedImage={0}
-        //                     />
-        //                 </ErrorBoundaryDialog>
-        //             </Route>
-        //         </Switch>
-        //     </Router>
-        // );
 
         return(
             <div>

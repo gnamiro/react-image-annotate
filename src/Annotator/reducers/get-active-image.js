@@ -12,6 +12,7 @@ export default (state) => {
     } else {
       pathToActiveImage = ["images", currentImageIndex]
       activeImage = getIn(state, pathToActiveImage)
+      // console.log(activeImage)
     }
   } else if (state.annotationType === "video") {
     pathToActiveImage = ["keyframes", state.currentVideoTime || 0]

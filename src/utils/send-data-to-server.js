@@ -13,7 +13,6 @@ export const getImageData = (activeImage) => {
 }
 
 export const saveData = (imageData) => {
-    console.log(imageData)
     axios.post('http://127.0.0.1:5000/save', imageData)
       .then(response => {
         console.log(response);
@@ -21,12 +20,12 @@ export const saveData = (imageData) => {
 }
 
 export const saveActiveImage = (activeImage) => {
-  console.log(activeImage)
   if (activeImage === null)
     return
 
+  console.log(activeImage)
+
   let imageData = getImageData(activeImage)
-  console.log(imageData)
 
   axios.post('http://127.0.0.1:5000/activeImage', imageData)
     .then(response => {

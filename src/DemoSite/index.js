@@ -8,7 +8,6 @@ import ErrorBoundaryDialog from "./ErrorBoundaryDialog.js"
 import {saveData, splitRegionData, getImageData} from '../utils/send-data-to-server'
 
 const preprocessDataBeforeSend = (output) => {
-  console.log(output.images)
   let _images = output.images
   for (let imageIndex = 0; imageIndex < _images.length; imageIndex++){
     let imageData = getImageData(_images[imageIndex])
@@ -22,7 +21,6 @@ const preprocessDataBeforeSend = (output) => {
     let _regions = _images[imageIndex].regions || []
     imageData['regions'] = [] 
     for (let regionNum = 0; regionNum < _regions.length; regionNum++){
-      console.log(_regions[regionNum])
       imageData['regions'].push(splitRegionData(_regions[regionNum]))
     }
     saveData(imageData)

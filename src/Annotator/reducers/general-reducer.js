@@ -14,7 +14,6 @@ import getLandmarksWithTransform from "../../utils/get-landmarks-with-transform"
 import setInLocalStorage from "../../utils/set-in-local-storage"
 import {v4 as uuidv4} from 'uuid'
 
-import { saveActiveImage } from "../../utils/send-data-to-server"
 
 // const getRandomId = () => {
 //   let dt = new Date().getTime();
@@ -174,7 +173,6 @@ export default (state: MainLayoutState, action: Action) => {
       // if(!isEqual(oldComment, action.comment)){
       //   state = saveToHistory(state, "Change Image comment")
       // }
-      // console.log(state)
       state = setIn(state, ["comment"], action.comment)
       return setIn(state, [...pathToActiveImage, "comment"], state.comment)
     }
