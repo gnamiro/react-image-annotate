@@ -33,6 +33,7 @@ import useKey from "use-key-hook"
 import { useSettings } from "../SettingsProvider"
 import { withHotKeys } from "react-hotkeys"
 import { defaultKeyMap } from "../ShortcutsManager"
+import { action } from "@storybook/addon-actions"
 
 // import Fullscreen from "../Fullscreen"
 
@@ -373,6 +374,7 @@ export const MainLayout = ({
                     allImages={state.images}
                     onSelectJump={onSelectJump}
                     saveActiveImage={saveActiveImage}
+                    onClick={action("CHANGE_2_COMPLETE", "activeImage")}
                   />
                 ),
                 state.taskDescription && (

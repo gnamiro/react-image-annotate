@@ -204,6 +204,12 @@ export default (state: MainLayoutState, action: Action) => {
       }
       return state
     }
+    case "CHANGE_2_COMPLETE": {
+      if(!activeImage) return state
+
+      
+      return setIn(state, [...pathToActiveImage, 'processed'], true)
+    }
     case "SELECT_REGION": {
       const { region } = action
       const regionIndex = getRegionIndex(action.region)
