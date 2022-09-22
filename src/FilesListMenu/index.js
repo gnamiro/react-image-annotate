@@ -83,10 +83,11 @@ export const FilesListMenu = ({
             onClick={() => {handleClickLabel(image.name)}}
           >
 
-            {image.processed ? <span style={{color: "green"}}>&#10003;</span> : <span />}
+            
             
             <span style={index === selectedImage? {backgroundColor: "rgba(255, 124, 120, 0.5)"} : {}}>
               <Label className={classnames({ selected: image.name === selectedImage })} style={ { backgroundColor: "withe" }}>
+                {image.processed ? <span style={{color: "green"}}>&#10003;</span> : <span />}
                 {capitalize(image.name)}
               </Label>
             </span>

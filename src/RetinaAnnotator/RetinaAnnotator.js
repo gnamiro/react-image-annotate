@@ -30,22 +30,18 @@ class RetinaAnnotator extends React.Component{
 
         this.multi_label = multi_label;
         this.labels = labels;
-        console.log(imagesPromise)
         imagesPromise.then(response => {
-          // response = JSON.parse(response)
           response.imagesName.forEach(element => {
               let image = {
                 'src':  "./images/images/" + element['image-name'],
                 'name': element['image-name'],
-                'cls': element['cls'].split(';'),
-                'comment': element['comment']
+                'selectedClsList': (element['cls']  || '').split(';'),
+                'comment': element['comment'],
+                'processed': element['processed']
               }
               this.images.push(image)
               
           });
-
-          console.log(this.images)
-
           this.setState({
             annotatorOpen: true
           });

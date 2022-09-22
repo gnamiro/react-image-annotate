@@ -879,6 +879,7 @@ export default (state: MainLayoutState, action: Action) => {
           )
         }
         case "next": {
+          // console.log('next ------ next')
           if (currentImageIndex === null) return state
           if (currentImageIndex === state.images.length - 1) return state
           return setNewImage(

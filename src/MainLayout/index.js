@@ -370,7 +370,7 @@ export const MainLayout = ({
                   <FilesListMenu
                     state={state}
                     selectedImage={state.selectedImage}
-                    allImages={allImages}
+                    allImages={state.images}
                     onSelectJump={onSelectJump}
                     saveActiveImage={saveActiveImage}
                   />

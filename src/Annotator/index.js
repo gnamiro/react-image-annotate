@@ -8,7 +8,7 @@ import type {
   ToolEnum,
 } from "../MainLayout/types"
 import React, { useEffect, useReducer } from "react"
-import makeImmutable, { without } from "seamless-immutable"
+import makeImmutable, { without, setIn } from "seamless-immutable"
 
 import type { KeypointsDefinition } from "../ImageCanvas/region-tools"
 import MainLayout from "../MainLayout"
@@ -163,9 +163,14 @@ export const Annotator = ({
   const dispatch = useEventCallback((action: Action) => {
     // console.log(action)
     if (action.type === "HEADER_BUTTON_CLICKED") {
+      // const { currentImageIndex, pathToActiveImage, activeImage } =
+      // getActiveImage(state)
       if (["Exit", "Done", "Save", "Complete"].includes(action.buttonName)) {
         return onExit(without(state, "history"))
       } else if (action.buttonName === "Next" && onNextImage) {
+        // console.log(state)
+        // state = setIn(state, [...pathToActiveImage, 'processed'], true)
+        // console.log(state)
         saveCurrentData(getActiveImage(state).activeImage)
         return onNextImage(without(state, "history"))
       } else if (action.buttonName === "Prev" && onPrevImage) {
