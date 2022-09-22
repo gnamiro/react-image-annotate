@@ -31,6 +31,7 @@ class RetinaAnnotator extends React.Component{
         this.multi_label = multi_label;
         this.labels = labels;
         imagesPromise.then(response => {
+
           response.imagesName.forEach(element => {
               let image = {
                 'src':  "./images/images/" + element['image-name'],
