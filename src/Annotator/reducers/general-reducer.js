@@ -14,6 +14,7 @@ import getLandmarksWithTransform from "../../utils/get-landmarks-with-transform"
 import setInLocalStorage from "../../utils/set-in-local-storage"
 import {v4 as uuidv4} from 'uuid'
 
+
 // const getRandomId = () => {
 //   let dt = new Date().getTime();
 //   let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -190,7 +191,6 @@ export default (state: MainLayoutState, action: Action) => {
       // if(!isEqual(oldComment, action.comment)){
       //   state = saveToHistory(state, "Change Image comment")
       // }
-      // console.log(state)
       state = setIn(state, ["comment"], action.comment)
       return setIn(state, [...pathToActiveImage, "comment"], state.comment)
     }
@@ -889,6 +889,7 @@ export default (state: MainLayoutState, action: Action) => {
         case "clone": {
           if (currentImageIndex === null) return state
           if (currentImageIndex === state.images.length - 1) return state
+          
           return setIn(
             setNewImage(
               state.images[currentImageIndex + 1],

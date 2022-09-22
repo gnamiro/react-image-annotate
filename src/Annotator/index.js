@@ -22,6 +22,9 @@ import imageReducer from "./reducers/image-reducer.js"
 import useEventCallback from "use-event-callback"
 import videoReducer from "./reducers/video-reducer.js"
 
+import { saveActiveImage } from "../utils/send-data-to-server"
+import getActiveImage from "./reducers/get-active-image"
+
 type Props = {
   taskDescription?: string,
   allowedArea?: { x: number, y: number, w: number, h: number },
@@ -110,6 +113,7 @@ export const Annotator = ({
     if (selectedImage === -1) selectedImage = undefined
   }
   const annotationType = images ? "image" : "video"
+  
   const [state, dispatchToReducer] = useReducer(
     historyHandler(
       combineReducers(
@@ -153,15 +157,16 @@ export const Annotator = ({
           }),
     })
   )
-  
   const dispatch = useEventCallback((action: Action) => {
     // console.log(action)
     if (action.type === "HEADER_BUTTON_CLICKED") {
       if (["Exit", "Done", "Save", "Complete"].includes(action.buttonName)) {
         return onExit(without(state, "history"))
       } else if (action.buttonName === "Next" && onNextImage) {
+        saveActiveImage(getActiveImage(state).activeImage)
         return onNextImage(without(state, "history"))
       } else if (action.buttonName === "Prev" && onPrevImage) {
+        saveActiveImage(getActiveImage(state).activeImage)
         return onPrevImage(without(state, "history"))
       }
     }

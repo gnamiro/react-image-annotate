@@ -1,11 +1,37 @@
 import axios from 'axios'
 
+export const getImageData = (activeImage) => {
+  let imageData = {}
+  imageData['src'] = activeImage.src
+  imageData['name'] = activeImage.name
+  imageData['cls'] = activeImage.selectedClsList || []
+  imageData['comment'] = activeImage.comment || ""
+  if (activeImage.pixelSize !== undefined)
+    imageData['pixelSize'] = {'h': activeImage.pixelSize.h, 'w': activeImage.pixelSize.w}
+  
+  return imageData
+}
+
 export const saveData = (imageData) => {
-    console.log(imageData)
     axios.post('http://127.0.0.1:5000/save', imageData)
       .then(response => {
         console.log(response);
       })
+}
+
+export const saveActiveImage = (activeImage) => {
+  if (activeImage === null)
+    return
+
+  console.log(activeImage)
+
+  let imageData = getImageData(activeImage)
+
+  axios.post('http://127.0.0.1:5000/activeImage', imageData)
+    .then(response => {
+      console.log(response)
+    })
+
 }
 
 export const splitRegionData = (region) => {
