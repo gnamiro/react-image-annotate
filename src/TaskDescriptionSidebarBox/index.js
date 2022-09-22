@@ -27,7 +27,7 @@ const MarkdownContainer = styled("div")(({ theme }) => ({
 }))
 
 
-export const TaskDescriptionSidebarBox = ({ description, comment, onChange }) => {
+export const FilesListSidebarBox = ({ description, comment, onChange }) => {
   const commentInputRef = useRef(null)
   const onCommentInputClick = (_) => {
     // The TextField wraps the <input> tag with two divs
@@ -62,4 +62,4 @@ export const TaskDescriptionSidebarBox = ({ description, comment, onChange }) =>
   )
 }
 
-export default memo(TaskDescriptionSidebarBox)
+export default memo(FilesListSidebarBox)

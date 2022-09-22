@@ -174,7 +174,6 @@ storiesOf("Annotator", module)
     <Annotator
       onExit={(out) => {
         window.lastOutput = out
-        console.log(out)
       }}
       taskDescription={`## Annotate Hands\nDraw a bounding box around each hand.`}
       enabledTools={["select", "create-box"]}
@@ -460,7 +459,6 @@ storiesOf("Annotator", module)
     >
       <Annotator
         onExit={(...args) => {
-          console.log(...args)
           actionAddon("onExit")(...args)
         }}
         showTags

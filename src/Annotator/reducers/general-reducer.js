@@ -135,7 +135,25 @@ export default (state: MainLayoutState, action: Action) => {
     case "SELECT_IMAGE": {
       return setNewImage(action.image, action.imageIndex)
     }
+    // case "SELECT_IMAGE_Jump": {
+    //   let selectedImage = state.images.filter( 
+    //     (image) => {
+    //       return image.name == action.image
+    //     }
+    //   )[0]
+    //   let selectedImageIndex = state.images.indexOf(selectedImage)
+
+    //   console.log("Selcted Image: ", selectedImage)
+    //   console.log("Selected Image Index: ", selectedImageIndex)
+    //   console.log("State (Before): ", state)
+
+    //   state = setIn(state, ["selectedImage"], selectedImageIndex)
+    //   console.log("State (After): ", state)
+
+    //   return setNewImage(selectedImage, selectedImageIndex)
+    // }
     case "SELECT_CLASSIFICATION": {
+      console.log(action.cls)
       let selectedClsList = activeImage.selectedClsList || []
       selectedClsList = selectedClsList.indexOf(action.cls) !== -1 ? arrayRemove(selectedClsList, action.cls) : selectedClsList.concat([action.cls])
       state = setIn(state, [...pathToActiveImage, 'selectedClsList'], selectedClsList)

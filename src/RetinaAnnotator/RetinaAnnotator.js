@@ -21,27 +21,33 @@ class RetinaAnnotator extends React.Component{
         this.images = [
             {
               "src": "./images/2_06032012101_2.jpg",
-              "name": "2_06032012101_2.jpg"
+              "name": "2_06032012101_2.jpg",
+              "processed": true
             },
             {
               "src": "./images/2_06032012106_2.jpg",
-              "name": "2_06032012106_2.jpg"
+              "name": "2_06032012106_2.jpg",
+              "processed": true
             },
             {
               "src": "./images/2_06032012201_2.jpg",
-              "name": "2_06032012201_2.jpg"
+              "name": "2_06032012201_2.jpg",
+              "processed": false
             },
             {
               "src": "./images/2_06032012202_2.jpg",
-              "name": "2_06032012202_2.jpg"
+              "name": "2_06032012202_2.jpg",
+              "processed": false
             },
             {
               "src": "./images/2_06032017901_1.jpg",
-              "name": "2_06032017901_1.jpg"
-            }
+              "name": "2_06032017901_1.jpg",
+              "processed": false
+            },
           ];
           this.state = {annotatorOpen: false, selectedImage: 0};
           this.OpenAnnotatorClicked = this.OpenAnnotatorClicked.bind(this);
+          this.onSelectJumpHandler = this.onSelectJumpHandler.bind(this);
     }
     
     OpenAnnotatorClicked(labels, multi_label) {
@@ -52,6 +58,17 @@ class RetinaAnnotator extends React.Component{
         this.setState({
           annotatorOpen: true
         });
+    }
+
+    onSelectJumpHandler(selectedImageName){
+
+      let selectedImage = this.images.filter( (image) =>{
+        return image.name == selectedImageName
+      })[0]
+
+      let selectedImageIndex = this.images.indexOf(selectedImage)
+
+      this.setState({selectedImage: selectedImageIndex})
     }
 
     render(){
@@ -103,6 +120,9 @@ class RetinaAnnotator extends React.Component{
                           onPrevImage={ () => {
                             this.setState({selectedImage: (this.state.selectedImage - 1 + this.images.length) % this.images.length})
                           }}
+                          allImages={this.images}
+                          onSelectJump={this.onSelectJumpHandler}
+                          selectedImageIndex={this.state.selectedImage}
                           />
                   </ErrorBoundaryDialog>
                 ):(

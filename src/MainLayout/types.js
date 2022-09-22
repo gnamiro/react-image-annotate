@@ -121,6 +121,7 @@ export type MainLayoutState =
 export type Action =
   | {| type: "@@INIT" |}
   | {| type: "SELECT_IMAGE", image: Image, imageIndex: number |}
+  // | {| type: "SELECT_IMAGE_Jump", image: string |}
   | {|
       type: "IMAGE_OR_VIDEO_LOADED",
       metadata: {

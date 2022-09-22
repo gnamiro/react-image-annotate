@@ -55,6 +55,7 @@ type Props = {
   hideSettings?: boolean,
   hideFullScreen?: boolean,
   hideSave?: boolean,
+  allImages?: Array<string>,
 }
 
 export const Annotator = ({
@@ -89,6 +90,7 @@ export const Annotator = ({
   onExit,
   onNextImage,
   onPrevImage,
+  onSelectJump,
   keypointDefinitions,
   autoSegmentationOptions = { type: "autoseg" },
   hideHeader,
@@ -100,6 +102,7 @@ export const Annotator = ({
   hideFullScreen,
   hideSave,
   allowComments,
+  allImages = []
 }: Props) => {
   
   if (typeof selectedImage === "string") {
@@ -152,9 +155,9 @@ export const Annotator = ({
   )
   
   const dispatch = useEventCallback((action: Action) => {
+    // console.log(action)
     if (action.type === "HEADER_BUTTON_CLICKED") {
       if (["Exit", "Done", "Save", "Complete"].includes(action.buttonName)) {
-        // console.log(state)
         return onExit(without(state, "history"))
       } else if (action.buttonName === "Next" && onNextImage) {
         return onNextImage(without(state, "history"))
@@ -162,6 +165,9 @@ export const Annotator = ({
         return onPrevImage(without(state, "history"))
       }
     }
+    // else if (action.type === "IMAGE_OR_VIDEO_LOADED") {
+    //   return
+    // }
     dispatchToReducer(action)
   })
 
@@ -201,6 +207,8 @@ export const Annotator = ({
         hideSettings={hideSettings}
         hideFullScreen={hideFullScreen}
         hideSave={hideSave}
+        allImages={allImages}
+        onSelectJump={onSelectJump}
       />
     </SettingsProvider>
   )

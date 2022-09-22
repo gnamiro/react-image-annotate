@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { styled } from "@mui/material/styles"
 
 import ClassSelectionMenu from "../ClassSelectionMenu"
+import FilesListMenu from "../FilesListMenu"
 import DebugBox from "../DebugSidebarBox"
 import HistorySidebarBox from "../HistorySidebarBox"
 import ImageCanvas from "../ImageCanvas"
@@ -63,6 +64,7 @@ type Props = {
   onRegionClassAdded: () => {},
   hideHeader?: boolean,
   hideHeaderText?: boolean,
+  allImages: Array<String>
 }
 
 export const MainLayout = ({
@@ -80,6 +82,8 @@ export const MainLayout = ({
   hideSettings = false,
   hideFullScreen = false,
   hideSave = false,
+  allImages = [],
+  onSelectJump
 }: Props) => {
   
   const classes = useStyles()
@@ -360,6 +364,13 @@ export const MainLayout = ({
               rightSidebarItems={[
                 debugModeOn && (
                   <DebugBox state={debugModeOn} lastAction={state.lastAction} />
+                ),
+                state.regionClsList && (
+                  <FilesListMenu
+                    selectedImage={state.selectedImage}
+                    allImages={allImages}
+                    onSelectJump={onSelectJump}
+                  />
                 ),
                 state.taskDescription && (
                   <TaskDescription 
