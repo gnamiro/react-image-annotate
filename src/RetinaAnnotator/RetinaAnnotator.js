@@ -32,11 +32,12 @@ class RetinaAnnotator extends React.Component{
         this.labels = labels;
         console.log(imagesPromise)
         imagesPromise.then(response => {
+          // response = JSON.parse(response)
           response.imagesName.forEach(element => {
               let image = {
                 'src':  "./images/images/" + element['image-name'],
                 'name': element['image-name'],
-                'cls': element['cls'],
+                'cls': element['cls'].split(';'),
                 'comment': element['comment']
               }
               this.images.push(image)
