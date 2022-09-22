@@ -8,6 +8,7 @@ import colors from "../colors"
 import ImageIcon from '@mui/icons-material/Image';
 import capitalize from "lodash/capitalize"
 import classnames from "classnames"
+import getActiveImage from "../Annotator/reducers/get-active-image"
 
 const theme = createTheme()
 const LabelContainer = styled("div")(({ theme }) => ({
@@ -55,12 +56,16 @@ const Number = styled("div")(({ theme }) => ({
 }))
 
 export const FilesListMenu = ({
+  state,
   selectedImage,
   allImages,
-  onSelectJump
+  onSelectJump,
+  saveActiveImage
 }) => {
 
   const handleClickLabel = (label) => {
+    // console.log(state)
+    saveActiveImage(getActiveImage(state).activeImage)
     onSelectJump(label)
   }
 

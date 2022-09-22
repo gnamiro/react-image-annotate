@@ -157,21 +157,24 @@ export const Annotator = ({
           }),
     })
   )
+  const saveCurrentData = (activeImage) =>{
+    saveActiveImage(activeImage)
+  }
   const dispatch = useEventCallback((action: Action) => {
     // console.log(action)
     if (action.type === "HEADER_BUTTON_CLICKED") {
       if (["Exit", "Done", "Save", "Complete"].includes(action.buttonName)) {
         return onExit(without(state, "history"))
       } else if (action.buttonName === "Next" && onNextImage) {
-        saveActiveImage(getActiveImage(state).activeImage)
+        saveCurrentData(getActiveImage(state).activeImage)
         return onNextImage(without(state, "history"))
       } else if (action.buttonName === "Prev" && onPrevImage) {
-        saveActiveImage(getActiveImage(state).activeImage)
+        saveCurrentData(getActiveImage(state).activeImage)
         return onPrevImage(without(state, "history"))
       }
     }
     // else if (action.type === "IMAGE_OR_VIDEO_LOADED") {
-    //   return
+    //   saveActiveImage(getActiveImage(state).activeImage)
     // }
     dispatchToReducer(action)
   })
@@ -214,6 +217,7 @@ export const Annotator = ({
         hideSave={hideSave}
         allImages={allImages}
         onSelectJump={onSelectJump}
+        saveActiveImage = {saveCurrentData}
       />
     </SettingsProvider>
   )

@@ -20,41 +20,30 @@ class RetinaAnnotator extends React.Component{
         this.multi_label = false;
         // this.images = useS
         this.images = [];
-        // this.images = [
-        //     {
-        //       "src": "./images/2_06032012101_2.jpg",
-        //       "name": "2_06032012101_2.jpg"
-        //     },
-        //     {
-        //       "src": "./images/2_06032012101_2.jpg",
-        //       "name": "2_060320.jpg"
-        //     },
-        //     {
-        //       "src": "./images/2_06032012101_2.jpg",
-        //       "name": "2adf.jpg"
-        //     }
-        //   ];
-          this.state = {annotatorOpen: false, selectedImage: 0};
-          this.OpenAnnotatorClicked = this.OpenAnnotatorClicked.bind(this);
-          this.onSelectJumpHandler = this.onSelectJumpHandler.bind(this);
+    
+        this.state = {annotatorOpen: false, selectedImage: 0};
+        this.OpenAnnotatorClicked = this.OpenAnnotatorClicked.bind(this);
+        this.onSelectJumpHandler = this.onSelectJumpHandler.bind(this);
     }
     
     OpenAnnotatorClicked(labels, multi_label, imagesPromise) {
 
         this.multi_label = multi_label;
         this.labels = labels;
-        // console.log(imagesPromise) //TODO: add imagesName to this
-        // this.images = something from backennd
-
+        console.log(imagesPromise)
         imagesPromise.then(response => {
           response.imagesName.forEach(element => {
               let image = {
-                'src':  "./images/images/" + element,
-                'name': element
+                'src':  "./images/images/" + element['image-name'],
+                'name': element['image-name'],
+                'cls': element['cls'],
+                'comment': element['comment']
               }
               this.images.push(image)
               
           });
+
+          console.log(this.images)
 
           this.setState({
             annotatorOpen: true

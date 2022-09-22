@@ -32,7 +32,6 @@ export default () => {
   const [annotatorOpen, changeAnnotatorOpen] = useState(false)
   const [annotatorProps, changeAnnotatorProps] = useState(examples["Custom"]())
   const [lastOutput, changeLastOutput] = useState()
-  console.log(annotatorOpen);
   const [selectedImageIndex, changeSelectedImageIndex] = useState(0)
   // const imagesLength = annotatorProps.images.length;
   // const images = annotatorProps.images

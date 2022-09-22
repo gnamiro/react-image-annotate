@@ -83,7 +83,8 @@ export const MainLayout = ({
   hideFullScreen = false,
   hideSave = false,
   allImages = [],
-  onSelectJump
+  onSelectJump,
+  saveActiveImage
 }: Props) => {
   
   const classes = useStyles()
@@ -367,9 +368,11 @@ export const MainLayout = ({
                 ),
                 state.regionClsList && (
                   <FilesListMenu
+                    state={state}
                     selectedImage={state.selectedImage}
                     allImages={allImages}
                     onSelectJump={onSelectJump}
+                    saveActiveImage={saveActiveImage}
                   />
                 ),
                 state.taskDescription && (
