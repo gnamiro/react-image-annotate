@@ -20,6 +20,7 @@ class RetinaAnnotator extends React.Component{
         this.multi_label = false;
         // this.images = useS
         this.images = [];
+        this.enabledTools= ["select", "create-box", "create-circle", "create-polygon"];
     
         this.state = {annotatorOpen: false, selectedImage: 0};
         this.OpenAnnotatorClicked = this.OpenAnnotatorClicked.bind(this);
@@ -71,7 +72,7 @@ class RetinaAnnotator extends React.Component{
                               console.log(output.images)
                           }}
                           taskDescription="Classify Retina Images."
-                          enabledTools={["select"]}
+                          enabledTools={this.enabledTools}
                           regionClsList={this.labels}
                           images={this.images}
                           allowComments={true}
