@@ -207,6 +207,8 @@ export default (state: MainLayoutState, action: Action) => {
     case "CHANGE_2_COMPLETE": {
       if(!activeImage) return state
 
+      console.log("******* Change 2 complete")
+
       
       return setIn(state, [...pathToActiveImage, 'processed'], true)
     }
