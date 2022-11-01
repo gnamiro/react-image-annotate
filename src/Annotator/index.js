@@ -24,6 +24,7 @@ import videoReducer from "./reducers/video-reducer.js"
 
 import { saveActiveImage } from "../utils/send-data-to-server"
 import getActiveImage from "./reducers/get-active-image"
+import { action } from "@storybook/addon-actions"
 
 type Props = {
   taskDescription?: string,
@@ -160,20 +161,29 @@ export const Annotator = ({
   const saveCurrentData = (activeImage) =>{
     saveActiveImage(activeImage)
   }
-  const dispatch = useEventCallback((action: Action) => {
+  const dispatch = useEventCallback((_action: Action) => {
     // console.log(action)
-    if (action.type === "HEADER_BUTTON_CLICKED") {
+    if (_action.type === "HEADER_BUTTON_CLICKED") {
       // const { currentImageIndex, pathToActiveImage, activeImage } =
       // getActiveImage(state)
-      if (["Exit", "Done", "Save", "Complete"].includes(action.buttonName)) {
+      if (["Exit", "Done", "Save", "Complete"].includes(_action.buttonName)) {
         return onExit(without(state, "history"))
-      } else if (action.buttonName === "Next" && onNextImage) {
+      } else if (_action.buttonName === "Next" && onNextImage) {
+        action("CHANGE_2_COMPLETE", "activeImage")(getActiveImage(state))
+
+
+
+
         // console.log(state)
-        // state = setIn(state, [...pathToActiveImage, 'processed'], true)
+        // setIn(state, [...pathToActiveImage, 'processed'], true)
         // console.log(state)
+
+
+
+
         saveCurrentData(getActiveImage(state).activeImage)
         return onNextImage(without(state, "history"))
-      } else if (action.buttonName === "Prev" && onPrevImage) {
+      } else if (_action.buttonName === "Prev" && onPrevImage) {
         saveCurrentData(getActiveImage(state).activeImage)
         return onPrevImage(without(state, "history"))
       }
@@ -181,7 +191,7 @@ export const Annotator = ({
     // else if (action.type === "IMAGE_OR_VIDEO_LOADED") {
     //   saveActiveImage(getActiveImage(state).activeImage)
     // }
-    dispatchToReducer(action)
+    dispatchToReducer(_action)
   })
 
   const onRegionClassAdded = useEventCallback((cls) => {
