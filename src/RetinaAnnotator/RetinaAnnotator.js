@@ -78,9 +78,13 @@ class RetinaAnnotator extends React.Component{
                           allowComments={true}
                           selectedImage={this.state.selectedImage}
                           onNextImage={ () => {
+                            console.log(this.images)
+                            console.log('******--******')
+                            this.images[this.state.selectedImage].processed = true;
                             this.setState({selectedImage: (this.state.selectedImage + 1) % this.images.length})
                           }}
                           onPrevImage={ () => {
+                            this.images[this.state.selectedImage].processed = true;
                             this.setState({selectedImage: (this.state.selectedImage - 1 + this.images.length) % this.images.length})
                           }}
                           allImages={this.images}

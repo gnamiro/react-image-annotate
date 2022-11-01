@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Nav from 'react-bootstrap/Nav';
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import {Container, Row, Col} from "react-bootstrap"
@@ -45,7 +46,7 @@ class HomePage extends React.Component{
                                     </Row>
                                     <Row>
                                         <Col style={{display: 'flex', justifyContent: 'center'}}>
-                                        <button type="button" class="btn btn-danger">Log in</button>
+                                        <Nav.Link href='/annotator'> <button class="btn btn-lg btn-danger" style={{"margin-top": "2rem"}}>Open Annotator</button></Nav.Link>
                                         </Col>
                                     </Row>
                                 </Container>

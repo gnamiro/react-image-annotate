@@ -35,8 +35,8 @@ function HomeNavBar() {
             {/* </Nav.Link> */}
           </Nav>
           <Nav>
-            <Nav.Link eventKey={2} href="/login" className='my_nvbar'>
-              Log in
+            <Nav.Link eventKey={2} href="/annotator" className='my_nvbar'>
+              Annotator
             {/* <Link className='my_nvbar'  activeClass="active" to="login" spy={true} smooth={true} offset={0} duration={500}>Log in</Link> */}
             </Nav.Link>
           </Nav>

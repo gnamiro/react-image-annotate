@@ -53,9 +53,12 @@ export default () => {
               preprocessDataBeforeSend(output)
             }}
             onNextImage={() => {
+              console.log('******--******')
+              annotatorProps.images[selectedImageIndex].processed = true;
               changeSelectedImageIndex((selectedImageIndex + 1) % annotatorProps.images.length)
             }}
             onPrevImage={() => {
+              annotatorProps.images[selectedImageIndex].processed = true;
               changeSelectedImageIndex((selectedImageIndex - 1 + annotatorProps.images.length) % annotatorProps.images.length)
             }}
             selectedImage={selectedImageIndex}

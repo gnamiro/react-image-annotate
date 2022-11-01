@@ -371,7 +371,7 @@ export const MainLayout = ({
                   <FilesListMenu
                     state={state}
                     selectedImage={state.selectedImage}
-                    allImages={state.images}
+                    allImages={allImages}
                     onSelectJump={onSelectJump}
                     saveActiveImage={saveActiveImage}
                     onClick={action("CHANGE_2_COMPLETE", "activeImage")}
@@ -423,10 +423,10 @@ export const MainLayout = ({
                     keyframes={state.keyframes}
                   />
                 ),
-                <HistorySidebarBox
-                  history={state.history}
-                  onRestoreHistory={action("RESTORE_HISTORY")}
-                />,
+                // <HistorySidebarBox
+                //   history={state.history}
+                //   onRestoreHistory={action("RESTORE_HISTORY")}
+                // />,
               ].filter(Boolean)}
             >
               {canvas}
