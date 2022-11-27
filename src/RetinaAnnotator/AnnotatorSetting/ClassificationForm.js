@@ -4,11 +4,12 @@ import { TagsInput } from "react-tag-input-component";
 import "./ClassificationForm.css";
 import { getImages } from "../../utils/get-data-from-server";
 
-function  formSubmitHandler(OpenAnnotatorClicked, event, labels){
+function formSubmitHandler(OpenAnnotatorClicked, event, labels){
     event.preventDefault();
     
     const multi_label = event.target[labels.length+1].checked;
-    let imageNames = getImages()
+
+    let imageNames = getImages(labels)
 
     OpenAnnotatorClicked(labels, multi_label, imageNames)
 }
